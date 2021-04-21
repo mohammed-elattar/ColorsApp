@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import MiniPallete from './MiniPallete';
 import { withStyles } from '@material-ui/core/styles';
-import { findByLabelText } from '@testing-library/react';
 
 const styles = {
     root: {
@@ -27,10 +26,8 @@ const styles = {
     }
   };
 class PalleteList extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {}
+    goToPalette(id) {
+        this.props.history.push(`/palette/${id}`);
     }
     render() {
         const {palletes,classes} = this.props;
@@ -43,7 +40,7 @@ class PalleteList extends Component {
                     </div>
                     <div className={classes.palettes}>
                     {palletes.map(pallete => (
-                   <MiniPallete {...pallete}/>
+                   <MiniPallete {...pallete} handleClick={() => this.goToPalette(pallete.id)}/>
                ))} 
                     </div>
                 </div>

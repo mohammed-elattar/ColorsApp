@@ -16,9 +16,11 @@ export default class Pallete extends Component {
         this.setState({format});
     }
     render() {
-        const {colors, paletteName, emoji} = this.props.pallete;
+        const {colors, paletteName, emoji, id} = this.props.pallete;
         const {level, format} = this.state;
-        const colorsBoxes = colors[level].map(color => <ColorBox backgroundColor={color[format]} name={color.name} key={color.id}/>);
+        const colorsBoxes = colors[level].map(
+            color => <ColorBox backgroundColor={color[format]} name={color.name} key={color.id} moreUrl={`/palette/${id}/${color.id}`} hasLink/>
+            );
         return (
             <div className='Pallete'>
             <Navbar {...this.state} changeLevel={this.changeLevel} changeFormat={this.changeFormat}/>
